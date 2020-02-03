@@ -1,0 +1,13 @@
+{
+  "name": "whisperer-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:BolajiOlajide/whisperer-ui.git",
+  "author": "Bolaji Olajide <cooproton@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
