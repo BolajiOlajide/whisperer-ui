@@ -1,5 +1,5 @@
-import App, { Container } from 'next/app';
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import App from 'next/app';
+import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
 
 import theme from '../theme';
 
@@ -23,9 +23,9 @@ class WhispererApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <CSSReset />
-        <Container>
+        <ColorModeProvider>
           <Component {...pageProps} />
-        </Container>
+        </ColorModeProvider>
       </ThemeProvider>
     )
   }
