@@ -1,10 +1,12 @@
-import App from 'next/app';
+import NextApp from 'next/app';
 import { ThemeProvider, CSSReset, ColorModeProvider } from '@chakra-ui/core';
+import { ApolloProvider, useApolloClient } from '@apollo/react-hooks';
 
 import theme from '../theme';
+import withApollo from '../utils/apollo';
 
 
-class WhispererApp extends App {
+class App extends NextApp {
   static getInitialProps = async ({ Component, ctx }) => {
     let pageProps = {};
     if (Component.getInitialProps) {
@@ -18,17 +20,19 @@ class WhispererApp extends App {
   };
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, apollo } = this.props;
 
     return (
-      <ThemeProvider theme={theme}>
-        <CSSReset />
-        <ColorModeProvider>
-          <Component {...pageProps} />
-        </ColorModeProvider>
-      </ThemeProvider>
+      <ApolloProvider client={apollo}>
+        <ThemeProvider theme={theme}>
+          <CSSReset />
+          <ColorModeProvider>
+            <Component {...pageProps} />
+          </ColorModeProvider>
+        </ThemeProvider>
+      </ApolloProvider>
     )
   }
 }
 
-export default WhispererApp;
+export default withApollo(App);
