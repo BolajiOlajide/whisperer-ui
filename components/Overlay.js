@@ -7,10 +7,11 @@ const defaultStyle = {
   position: "absolute",
   height: "100%",
   width: "50%",
+  backgroundColor: '#0b0b0b',
   background: 'url("/static/background.jpg")',
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  transform: "translateX(0%)"
+  transform: "translateX(0%)",
 };
 
 const transitionStyles = {

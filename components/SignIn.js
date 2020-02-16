@@ -1,4 +1,4 @@
-import { Box, Stack, Heading, Link } from "@chakra-ui/core";
+import { Box, Stack, Heading } from "@chakra-ui/core";
 import {
   FormControl,
   FormLabel,
@@ -34,7 +34,7 @@ const SignIn = ({ toggleSignIn }) => {
         <Button><span>Sign In</span></Button>
 
         <ButtonLink onClick={goToSignUp}>
-          Don't have an account? Sign up for one.
+          Don't have an account? Click here to Sign up for one.
         </ButtonLink>
       </Stack>
     </Box>
