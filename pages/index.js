@@ -11,8 +11,8 @@ const Home = () => {
 
   return (
     <Grid templateColumns="repeat(2, 1fr)" h="100vh">
-      <SignUp toggleSignIn={toggleSignIn} />
-      <SignIn toggleSignIn={toggleSignIn} />
+      <SignUp toggleSignIn={toggleSignIn} fade={!showSignIn} />
+      <SignIn toggleSignIn={toggleSignIn} fade={showSignIn} />
       <Overlay inProp={showSignIn} />
     </Grid>
   );

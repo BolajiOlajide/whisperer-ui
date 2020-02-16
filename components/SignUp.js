@@ -1,5 +1,6 @@
-import { Box, Stack, Heading } from "@chakra-ui/core";
 import {
+  Stack,
+  Heading,
   FormControl,
   FormLabel,
   // FormErrorMessage,
@@ -9,57 +10,34 @@ import {
 import Button from './Button';
 import Input from './Input';
 import ButtonLink from './ButtonLink';
+import Fade from './Fade';
+import FormInput from './FormInput';
 
 
-const SignUp = ({ toggleSignIn }) => {
-  const goToSignUp = () => toggleSignIn(prevValue => !prevValue);
+const SignUp = ({ toggleSignIn, fade }) => {
+  const goToSignUp = (event) => {
+    event.preventDefault();
+    toggleSignIn(prevValue => !prevValue);
+  }
 
   return (
-    <Box w="100%" h="100%">
-      <Stack spacing={6} w="100%" align="center" justify="center" h="100%">
+    <Fade w="100%" h="100%" as="form" method="POST" in={fade}>
+      <Stack spacing={6} w="100%" align="center" justify="center" h="100%" as="fieldset">
         <Heading as="h1">Welcome to Whisper</Heading>
 
-        <FormControl>
-          <FormLabel htmlFor="firstname">
-            First Name
-          </FormLabel>
-          <Input type="text" id="firstname" name="firstname" placeholder="Your firstname" />
-        </FormControl>
+        <FormInput inputId="firstname" label="First Name" placeholder="Your firstname" />
+        <FormInput inputId="lastname" label="Last Name" placeholder="Your lastname" />
+        <FormInput inputId="email" label="Email Address" placeholder="Your email" type="email" />
+        <FormInput inputId="password" label="Password" placeholder="Your password" type="password" />
+        <FormInput inputId="confirmPassword" label="Confirm Password" placeholder="Confirm password" type="password" />
 
-        <FormControl>
-          <FormLabel htmlFor="lastname">
-            Last Name
-          </FormLabel>
-          <Input type="text" id="lastname" name="lastname" placeholder="Your lastname" />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel htmlFor="email">
-            Email address
-          </FormLabel>
-          <Input type="email" id="email" name="email" placeholder="Your email" />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel htmlFor="password">
-            Password
-          </FormLabel>
-          <Input type="password" id="password" name="password" placeholder="Your password" />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel htmlFor="confirmPassword">
-            Confirm Password
-          </FormLabel>
-          <Input type="password" id="confirmPassword" name="confirmPassword" placeholder="Your password" />
-        </FormControl>
         <Button><span>Create Account</span></Button>
 
         <ButtonLink onClick={goToSignUp}>
           Have an account? Click here to Sign in
         </ButtonLink>
       </Stack>
-    </Box>
+    </Fade>
   );
 };
 
