@@ -7,7 +7,7 @@ import SignUp from '../components/SignUp';
 
 
 const Home = () => {
-  const [showSignIn, toggleSignIn] = useState(false);
+  const [showSignIn, toggleSignIn] = useState(true);
 
   return (
     <Grid templateColumns="repeat(2, 1fr)" h="100vh">
