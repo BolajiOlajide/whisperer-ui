@@ -41,7 +41,7 @@ const SignIn = ({ toggleSignIn, fade }) => {
 
   return (
     <Fade w="100%" h="100%" as="form" method="POST" in={fade} onSubmit={_onSubmit}>
-      <Stack spacing={6} w="100%" align="center" justify="center" h="100%" as="fieldset">
+      <Stack spacing={6} w="100%" align="center" justify="center" h="100%">
         <Heading as="h1">Welcome to Whisper</Heading>
 
         <FormInput
