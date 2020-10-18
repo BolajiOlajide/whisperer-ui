@@ -1,1 +1,1 @@
-export const endpoint = 'http://localhost:8100/graphql';
+export const endpoint = 'https://whisperer-api.herokuapp.com/graphql';
