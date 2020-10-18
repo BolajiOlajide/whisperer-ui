@@ -1,7 +1,7 @@
 import { PseudoBox } from '@chakra-ui/core';
 
 
-export default (props) => (
+export default Input = (props) => (
   <PseudoBox
     as="input"
     py={2}

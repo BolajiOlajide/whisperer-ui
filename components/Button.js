@@ -1,6 +1,6 @@
 import { PseudoBox } from '@chakra-ui/core';
 
-export default ({
+export default Button = ({
   children,
   background = "blue.500",
   ...props

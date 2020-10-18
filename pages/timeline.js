@@ -1,3 +1,5 @@
 import Timeline from '../components/Timeline';
 
-export default () => <Timeline />;
+const TimelinePage = () => <Timeline />;
+
+export default TimelinePage;

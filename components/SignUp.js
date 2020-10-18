@@ -1,10 +1,6 @@
 import {
   Stack,
   Heading,
-  FormControl,
-  FormLabel,
-  // FormErrorMessage,
-  // FormHelperText,
 } from "@chakra-ui/core";
 
 import Button from './Button';

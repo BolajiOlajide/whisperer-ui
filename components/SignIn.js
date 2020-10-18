@@ -26,21 +26,16 @@ const SignIn = ({ toggleSignIn, fade }) => {
   const { bind: bindPassword, value: password, reset: resetPassword } = useInput('bolaji123');
 
   const _onSubmit = async (e) => {
-    console.log('submittting')
     e.preventDefault();
 
-    console.log(email, password);
     await signIn({ email, password });
-
-    console.log(data, '<=== data')
 
     resetEmail();
     resetPassword();
   }
-  console.log(loading, 'loading <-==')
 
   return (
-    <Fade w="100%" h="100%" as="form" method="POST" in={fade} onSubmit={_onSubmit}>
+    <Fade w="100%" h="100%" as="form" method="POST" in={fade} onSubmit={_onSubmit} align="center" justify="center">
       <Stack spacing={6} w="100%" align="center" justify="center" h="100%">
         <Heading as="h1">Welcome to Whisper</Heading>
 

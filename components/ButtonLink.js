@@ -11,6 +11,6 @@ const styleProps = {
   _focus: {}
 }
 
-export default ({ children, ...props }) => <Button {...styleProps} {...props}>
+export default ButtonLink = ({ children, ...props }) => <Button {...styleProps} {...props}>
   {children}
 </Button>;
