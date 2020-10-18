@@ -1,7 +1,7 @@
 import { PseudoBox } from '@chakra-ui/core';
 
 
-export default Input = (props) => (
+const Input = (props) => (
   <PseudoBox
     as="input"
     py={2}
@@ -18,4 +18,6 @@ export default Input = (props) => (
     }}
     {...props}
   />
-)
+);
+
+export default Input;
