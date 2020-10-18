@@ -26,21 +26,3 @@ mutation SIGN_UP_MUTATION(
   }
 }
 `;
-
-export const SIGN_IN_MUTATION = gql`
-mutation SIGN_IN_MUTATION(
-  $email: String!
-  $password: String!
-) {
-  signin(
-    email: $email
-    password: $password
-  ) {
-    token
-    user {
-      id
-      username
-    }
-  }
-}
-`;

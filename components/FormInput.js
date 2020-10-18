@@ -8,7 +8,7 @@ import Input from '../components/Input';
 const FormInput = ({ inputId, label, ...props}) => {
   return (
     <FormControl>
-      <FormLabel htmlFor={inputId}>{label}</FormLabel>
+      <FormLabel htmlFor={inputId} w="150px">{label}</FormLabel>
       <Input
         id={inputId}
         {...props}

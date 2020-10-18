@@ -4,14 +4,12 @@ import {
   FormErrorMessage,
   Spinner
 } from '@chakra-ui/core';
-import { useMutation } from '@apollo/react-hooks';
 
 import Button from '../components/Button';
 import ButtonLink from '../components/ButtonLink';
 import Fade from './Fade';
 import useInput from '../hooks/useInput';
 import FormInput from './FormInput';
-import { SIGN_IN_MUTATION } from '../graphql';
 
 
 const SignIn = ({ toggleSignIn, fade }) => {
@@ -20,15 +18,13 @@ const SignIn = ({ toggleSignIn, fade }) => {
     toggleSignIn(prevValue => !prevValue);
   }
 
-  const [signIn, { loading, error, data }] = useMutation(SIGN_IN_MUTATION)
-
-  const { bind: bindEmail, value: email, reset: resetEmail } = useInput('bolaji@proton.me');
-  const { bind: bindPassword, value: password, reset: resetPassword } = useInput('bolaji123');
+  const { bind: bindEmail, value: email, reset: resetEmail } = useInput('');
+  const { bind: bindPassword, value: password, reset: resetPassword } = useInput('');
 
   const _onSubmit = async (e) => {
     e.preventDefault();
 
-    await signIn({ email, password });
+    console.log('done');
 
     resetEmail();
     resetPassword();
@@ -37,23 +33,25 @@ const SignIn = ({ toggleSignIn, fade }) => {
   return (
     <Fade w="100%" h="100%" as="form" method="POST" in={fade} onSubmit={_onSubmit} align="center" justify="center">
       <Stack spacing={6} w="100%" align="center" justify="center" h="100%">
-        <Heading as="h1">Welcome to Whisper</Heading>
+        <Heading as="h1">Welcome to Whisperer</Heading>
 
-        <FormInput
-          inputId="signInEmail"
-          label="Email Address"
-          placeholder="Your email"
-          type="email"
-          {...bindEmail}
-        />
+        <Stack spacing={3} align="flex-start" justify="center">
+          <FormInput
+            inputId="signInEmail"
+            label="Email Address"
+            placeholder="Your email"
+            type="email"
+            {...bindEmail}
+          />
 
-        <FormInput
-          inputId="signInPassword"
-          label="Password"
-          placeholder="Your password"
-          type="password"
-          {...bindPassword}
-        />
+          <FormInput
+            inputId="signInPassword"
+            label="Password"
+            placeholder="Your password"
+            type="password"
+            {...bindPassword}
+          />
+        </Stack>
 
         <FormErrorMessage>Sorry o!</FormErrorMessage>
         {
