@@ -14,7 +14,6 @@ const Input = (props) => (
       outline: "none",
       bg: "white",
       boxShadow: "outline",
-      // borderColor: "green.700"
     }}
     {...props}
     focusBorderColor="lime"

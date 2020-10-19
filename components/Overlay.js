@@ -7,7 +7,7 @@ const defaultStyle = {
   position: "absolute",
   height: "100%",
   width: "50%",
-  backgroundColor: '#0b0b0b',
+  backgroundColor: 'red',
   background: 'url("/static/background.jpg")',
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
