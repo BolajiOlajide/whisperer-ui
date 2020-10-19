@@ -25,7 +25,6 @@ const App = withApollo(({ Component, pageProps, apollo }) => (
 
 App.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {};
-  console.log(Component.getInitialProps)
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
