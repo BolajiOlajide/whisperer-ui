@@ -25,7 +25,7 @@ const Timeline = () => {
           <Button alignSelf="flex-end" mt="10px">Share</Button>
         </PseudoBox>
 
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        <Grid templateColumns="repeat(4, 1fr)" gap={8}>
           {randomWhispers.map((whisper) => (
             <Box
               border="1px solid"
@@ -38,6 +38,8 @@ const Timeline = () => {
               flexDir="column"
               key={whisper.id}
               borderRadius="4px"
+              alignItems="flex-start"
+              justifyContent="space-between"
             >
               <Text fontSize="1.2em" color="black" textAlign="left">{whisper.text}</Text>
               <Text fontSize="0.8em" color="black" alignSelf="flex-end">by {whisper.whisperer.username}</Text>
