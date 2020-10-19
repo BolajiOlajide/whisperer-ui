@@ -5,17 +5,22 @@ import { ApolloProvider, useApolloClient } from '@apollo/react-hooks';
 
 import theme from '../theme';
 import withApollo from '../utils/apollo';
-
+import '../assets/main.css';
 
 const App = withApollo(({ Component, pageProps, apollo }) => (
-  <ApolloProvider client={apollo}>
-    <ThemeProvider theme={theme}>
-      <CSSReset />
-      <ColorModeProvider>
-        <Component {...pageProps} />
-      </ColorModeProvider>
-    </ThemeProvider>
-  </ApolloProvider>
+  <Fragment>
+    <Head>
+      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
+    </Head>
+    <ApolloProvider client={apollo}>
+      <ThemeProvider theme={theme}>
+        <CSSReset />
+        <ColorModeProvider>
+          <Component {...pageProps} />
+        </ColorModeProvider>
+      </ThemeProvider>
+    </ApolloProvider>
+  </Fragment>
 ));
 
 App.getInitialProps = async ({ Component, ctx }) => {
