@@ -18,7 +18,7 @@ const SignUp = ({ toggleSignIn, fade }) => {
   return (
     <Fade w="100%" h="100%" as="form" method="POST" in={fade} align="center" justify="center">
       <Stack spacing={5} w="100%" align="center" justify="center" h="100%">
-        <Heading as="h1">Welcome to Whisperer</Heading>
+        <Heading as="h1" color="green.700">Welcome to Whisperer</Heading>
 
         <Stack spacing={3} align="flex-start" justify="center">
           <FormInput inputId="name" label="Name" placeholder="Your name" />

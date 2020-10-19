@@ -19,8 +19,8 @@ const theme = {
     logo: {
       path: (
         <svg
-          width="3000"
-          height="3163"
+          width="400"
+          height="400"
           viewBox="0 0 3000 3163"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

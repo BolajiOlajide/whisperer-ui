@@ -1,6 +1,13 @@
+import { Fragment } from 'react';
+
+import Navbar from './Navbar';
+
 const Timeline = () => {
   return (
-    <div>Timeline</div>
+    <Fragment>
+      <Navbar />
+      <div>Timeline</div>
+    </Fragment>
   );
 }
 
