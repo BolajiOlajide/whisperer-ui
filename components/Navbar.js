@@ -1,11 +1,11 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/core';
+import { Box, Flex, Image, Text, Icon } from '@chakra-ui/core';
 
 import NavLink from './NavLink';
 
 const Navbar = () => {
   return (
     <Flex
-        bg="tomato"
+        bg="green.700"
         w="100%"
         px={5}
         py={4}
@@ -13,12 +13,9 @@ const Navbar = () => {
         alignItems="center"
       >
         <Flex flexDirection="row" justifyContent="center" alignItems="center">
-          <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Android_O_Preview_Logo.png"
-            size={30}
-          />
-          <Text pl={3} color="white">
-            Company
+          <Icon name="logo" size="2em" role="img" focusable />
+          <Text pl={3} color="white" fontWeight="bold" fontSize="lg">
+            Whisperer
           </Text>
         </Flex>
         <Box>

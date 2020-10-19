@@ -21,10 +21,33 @@ const SignUp = ({ toggleSignIn, fade }) => {
         <Heading as="h1" color="green.700">Welcome to Whisperer</Heading>
 
         <Stack spacing={3} align="flex-start" justify="center">
-          <FormInput inputId="name" label="Name" placeholder="Your name" />
-          <FormInput inputId="email" label="Email Address" placeholder="Your email" type="email" />
-          <FormInput inputId="password" label="Password" placeholder="Your password" type="password" />
-          <FormInput inputId="confirmPassword" label="Confirm Password" placeholder="Confirm password" type="password" />
+          <FormInput
+            inputId="name"
+            label="Name"
+            placeholder="Your name"
+            isRequired
+          />
+          <FormInput
+            inputId="email"
+            label="Email Address"
+            placeholder="Your email"
+            type="email"
+            isRequired
+          />
+          <FormInput
+            inputId="password"
+            label="Password"
+            placeholder="Your password"
+            type="password"
+            isRequired
+          />
+          <FormInput
+            inputId="confirmPassword"
+            label="Confirm Password"
+            placeholder="Confirm password"
+            type="password"
+            isRequired
+          />
         </Stack>
 
         <Button><span>Create Account</span></Button>

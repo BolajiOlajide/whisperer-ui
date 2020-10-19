@@ -43,6 +43,7 @@ const SignIn = ({ toggleSignIn, fade }) => {
             placeholder="Your email"
             type="email"
             {...bindEmail}
+            isRequired
           />
 
           <FormInput
@@ -51,6 +52,7 @@ const SignIn = ({ toggleSignIn, fade }) => {
             placeholder="Your password"
             type="password"
             {...bindPassword}
+            isRequired
           />
         </Stack>
 
