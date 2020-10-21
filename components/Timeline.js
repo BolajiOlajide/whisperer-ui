@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react';
 import { Box, Textarea, Text, PseudoBox, Grid, useDisclosure } from '@chakra-ui/core';
 import { Modal } from '@chakra-ui/core/dist/Modal';
 
-import Navbar from './Navbar';
 import Button from './Button';
 import Whisper from './Whisper';
 
@@ -24,8 +23,6 @@ const Timeline = () => {
 
   return (
     <Fragment>
-      <Navbar />
-
       <Box paddingX="100px" flex="1" paddingY="10px">
         <PseudoBox as="form" display="flex" flexDir="column" my="20px">
           <Text mb="8px">Share a secret?</Text>

@@ -20,13 +20,15 @@ const Whisper = ({ whisper, closeModal }) => {
       <ModalOverlay />
       <ModalContent bg="white">
         <ModalHeader>
-          <Text textDecor="underline">Check out this whisper!</Text>
+          <Text textDecor="underline" color="green.700">
+            Check out this whisper!
+          </Text>
         </ModalHeader>
         <ModalCloseButton />
 
         <ModalBody>
           <Box flexDir="column" display="flex">
-            <Text>{whisper.text}</Text>
+            <Text fontSize="1.2em" fontWeight="bold">{whisper.text}</Text>
             <Text alignSelf="flex-end">- {whisper.whisperer.username}</Text>
 
             <Textarea

@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 
 import Timeline from '../components/Timeline';
+import Navbar from '../components/Navbar';
 
 const TimelinePage = () => {
   return (
@@ -9,6 +10,7 @@ const TimelinePage = () => {
       <Head>
         <title>User's Timeline | Whisperer</title>
       </Head>
+      <Navbar />
       <Timeline />
     </Fragment>
   );
