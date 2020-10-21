@@ -1,12 +1,27 @@
-import { Fragment } from 'react';
-import { Box, Textarea, Text, PseudoBox, Grid, Heading } from '@chakra-ui/core';
+import { Fragment, useState } from 'react';
+import { Box, Textarea, Text, PseudoBox, Grid, useDisclosure } from '@chakra-ui/core';
+import { Modal } from '@chakra-ui/core/dist/Modal';
 
 import Navbar from './Navbar';
 import Button from './Button';
+import Whisper from './Whisper';
 
-import randomWhispers from '../utils/random';
+import { randomWhispers } from '../utils/random';
 
 const Timeline = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentWhisper, setCurrentWhisper] = useState(null);
+
+  const handleWhisperClick = (whisper) => {
+    setCurrentWhisper(whisper);
+    onOpen();
+  }
+
+  const closeModal = () => {
+    onClose();
+    setCurrentWhisper(null);
+  }
+
   return (
     <Fragment>
       <Navbar />
@@ -40,6 +55,7 @@ const Timeline = () => {
               borderRadius="4px"
               alignItems="flex-start"
               justifyContent="space-between"
+              onClick={() => handleWhisperClick(whisper)}
             >
               <Text fontSize="1.2em" color="black" textAlign="left">{whisper.text}</Text>
               <Text fontSize="0.8em" color="black" alignSelf="flex-end">by {whisper.whisperer.username}</Text>
@@ -47,6 +63,9 @@ const Timeline = () => {
           ))}
         </Grid>
       </Box>
+      <Modal isOpen={isOpen} onClose={closeModal} isCentered preserveScrollBarGap scrollBehavior="outside">
+        <Whisper whisper={currentWhisper} closeModal={closeModal} />
+      </Modal>
     </Fragment>
   );
 }

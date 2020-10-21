@@ -66,7 +66,7 @@ const Navbar = () => {
 
           <ModalFooter>
             <Button variantColor="red" mr={3} onClick={onClose}>
-              Close
+              No
             </Button>
             <Button bg="green.300" variantColor="green" onClick={handleLogout}>Yes</Button>
           </ModalFooter>
