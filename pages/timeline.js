@@ -29,9 +29,11 @@ const TimelinePage = () => {
           }
         }
 
+        localStorage.removeItem(WHISPER_TOKEN);
         router.push('/');
       } catch {
         console.error('Something bad happened!');
+        localStorage.removeItem(WHISPER_TOKEN);
         router.push('/');
       }
     }

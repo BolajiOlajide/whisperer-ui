@@ -30,6 +30,8 @@ const Home = () => {
         // check to see if the token has expired
         if (Date.now() > exp) {
           router.push('/timeline');
+        } else {
+          localStorage.removeItem(WHISPER_TOKEN);
         }
       } catch {
         // if for some reason the token decoding fails, we don't want to do anything

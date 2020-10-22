@@ -5,6 +5,7 @@ import { endpoint } from '../constants';
 
 
 export default withApollo(({ initialState, headers }) => {
+  console.log({ initialState, headers })
   const client = new ApolloClient({
     uri: endpoint,
     cache: new InMemoryCache().restore(initialState || {}),
