@@ -2,12 +2,13 @@ import { Fragment, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import jwtDecode from 'jwt-decode';
-import { Spinner, Box } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/core';
 
 
 import Timeline from '../components/Timeline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Spinner from '../components/Spinner';
 
 import { WHISPER_TOKEN } from '../constants';
 
@@ -40,11 +41,7 @@ const TimelinePage = () => {
             <Navbar />
             <Timeline />
           </Box>
-        ) : (
-            <Box alignItems="center" justifyContent="center" h="100%" display="flex" flex="1">
-              <Spinner color="green.700" size="xl" thickness="5px" emptyColor="green.100" />
-            </Box>
-          )
+        ) : <Spinner />
       }
       <Footer />
     </Fragment>

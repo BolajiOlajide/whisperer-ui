@@ -1,14 +1,23 @@
 import { Fragment, useState } from 'react';
 import { Grid } from '@chakra-ui/core';
 import Head from 'next/head';
+import { useQuery } from '@apollo/react-hooks';
 
 import Overlay from '../components/Overlay';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
+import Spinner from '../components/Spinner';
+
+import { NOOB_QUERY } from '../graphql';
 
 
 const Home = () => {
   const [showSignIn, toggleSignIn] = useState(true);
+  const { loading, data } = useQuery(NOOB_QUERY);
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     <Fragment>

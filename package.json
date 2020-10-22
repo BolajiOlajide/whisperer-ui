@@ -10,7 +10,6 @@
     "@chakra-ui/core": "0.8.0",
     "@emotion/core": "10.0.35",
     "@emotion/styled": "10.0.27",
-    "apollo-boost": "0.4.7",
     "babel-plugin-emotion": "10.0.27",
     "babel-plugin-import": "1.13.0",
     "emotion-theming": "10.0.27",
