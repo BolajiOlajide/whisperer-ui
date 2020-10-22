@@ -13,7 +13,7 @@ import { NOOB_QUERY } from '../graphql';
 
 const Home = () => {
   const [showSignIn, toggleSignIn] = useState(true);
-  const { loading, data } = useQuery(NOOB_QUERY);
+  const { loading } = useQuery(NOOB_QUERY);
 
   if (loading) {
     return <Spinner />
