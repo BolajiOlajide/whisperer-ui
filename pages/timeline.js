@@ -17,16 +17,19 @@ const TimelinePage = () => {
   const router = useRouter();
   const [authenticated, setAuthenticated] = useState(false);
 
-  // const handle
-
   useEffect(() => {
     if (process.browser) {
       try {
         const token = window.localStorage.getItem(WHISPER_TOKEN);
         if (token) {
-          const decodedToken = jwtDecode(token);
-          console.log(decodedToken);
+          const { exp } = jwtDecode(token);
+
+          if (Date.now() > exp) {
+            return setAuthenticated(true);
+          }
         }
+
+        router.push('/');
       } catch {
         console.error('Something bad happened!');
         router.push('/');
