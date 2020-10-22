@@ -10,7 +10,9 @@ import '../assets/main.css';
 const App = withApollo(({ Component, pageProps, apollo }) => (
   <Fragment>
     <Head>
-      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
+      <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+      <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <title>Whisperer</title>
     </Head>
     <ApolloProvider client={apollo}>
       <ThemeProvider theme={theme}>

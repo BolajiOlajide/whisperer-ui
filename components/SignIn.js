@@ -5,11 +5,12 @@ import {
   Spinner
 } from '@chakra-ui/core';
 
-import Button from '../components/Button';
-import ButtonLink from '../components/ButtonLink';
+import Button from './Button';
+import ButtonLink from './ButtonLink';
 import Fade from './Fade';
-import useInput from '../hooks/useInput';
 import FormInput from './FormInput';
+
+import useInput from '../hooks/useInput';
 
 
 const SignIn = ({ toggleSignIn, fade }) => {

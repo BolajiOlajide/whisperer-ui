@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Grid } from '@chakra-ui/core';
+import useToast from '@chakra-ui/core/dist/Toast';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -12,11 +13,24 @@ import { NOOB_QUERY } from '../graphql';
 
 
 const Home = () => {
+  const toast = useToast();
   const [showSignIn, toggleSignIn] = useState(true);
-  const { loading } = useQuery(NOOB_QUERY);
+  const { loading, error } = useQuery(NOOB_QUERY);
 
   if (loading) {
     return <Spinner />
+  }
+
+  if (error) {
+    const errorMessage = `An error occurred:
+${error.message}`;
+    toast({
+      title: 'ERROR!',
+      description: errorMessage,
+      status: "error",
+      duration: 4000,
+      isClosable: true,
+    })
   }
 
   return (
