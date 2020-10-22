@@ -13,25 +13,7 @@ import { NOOB_QUERY } from '../graphql';
 
 
 const Home = () => {
-  const toast = useToast();
   const [showSignIn, toggleSignIn] = useState(true);
-  const { loading, error } = useQuery(NOOB_QUERY);
-
-  if (loading) {
-    return <Spinner />
-  }
-
-  if (error) {
-    const errorMessage = `An error occurred:
-${error.message}`;
-    toast({
-      title: 'ERROR!',
-      description: errorMessage,
-      status: "error",
-      duration: 4000,
-      isClosable: true,
-    })
-  }
 
   return (
     <Fragment>

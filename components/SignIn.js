@@ -4,6 +4,9 @@ import {
   FormErrorMessage,
   Spinner
 } from '@chakra-ui/core';
+import useToast from '@chakra-ui/core/dist/Toast';
+import { useMutation } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 import Button from './Button';
 import ButtonLink from './ButtonLink';
@@ -11,25 +14,47 @@ import Fade from './Fade';
 import FormInput from './FormInput';
 
 import useInput from '../hooks/useInput';
+import { SIGN_IN_MUTATION } from '../graphql';
+import { WHISPER_TOKEN } from '../constants';
+import { route } from 'next/dist/next-server/server/router';
 
 
 const SignIn = ({ toggleSignIn, fade }) => {
-  const loading = false;
+  const toast = useToast();
+  const router = useRouter();
+  const [userSignIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION);
   const goToSignUp = (event) => {
     event.preventDefault();
     toggleSignIn(prevValue => !prevValue);
   }
-
   const { bind: bindEmail, value: email, reset: resetEmail } = useInput('');
   const { bind: bindPassword, value: password, reset: resetPassword } = useInput('');
 
+  const displayError = (errorMessage) => toast({
+    title: 'Sign in Error!',
+    description: errorMessage,
+    status: "error",
+    duration: 4000,
+    isClosable: true,
+  });
+
   const _onSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    console.log('done');
+      if (!email || !password) {
+        return displayError('Email and password fields are required');
+      }
 
-    resetEmail();
-    resetPassword();
+      const { data } = await userSignIn({ variables: { email, password } });
+
+      localStorage.setItem(WHISPER_TOKEN, data.signin.token);
+      router.push('/timeline');
+      resetEmail();
+      resetPassword();
+    } catch (error) {
+      displayError(error.message)
+    }
   }
 
   return (
@@ -45,6 +70,7 @@ const SignIn = ({ toggleSignIn, fade }) => {
             type="email"
             {...bindEmail}
             isRequired
+            disabled={loading}
           />
 
           <FormInput
@@ -54,12 +80,13 @@ const SignIn = ({ toggleSignIn, fade }) => {
             type="password"
             {...bindPassword}
             isRequired
+            disabled={loading}
           />
         </Stack>
 
         <FormErrorMessage>Sorry o!</FormErrorMessage>
         {
-          loading ? <Spinner size="xl" /> : <Button disabled={loading}><span>Sign In</span></Button>
+          loading ? <Spinner size="md" /> : <Button disabled={loading}><span>Sign In</span></Button>
         }
 
         <ButtonLink onClick={goToSignUp}>
