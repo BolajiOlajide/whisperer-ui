@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
 import {
   Box,
@@ -5,30 +6,23 @@ import {
   Text,
   Icon,
   Link as ChakraLink,
-  useDisclosure,
-  Button
 } from '@chakra-ui/core';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from '@chakra-ui/core/dist/Modal';
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
+} from '@chakra-ui/core/dist/Popover';
 import { useRouter } from 'next/router';
 
 import NavLink from './NavLink';
-import { Fragment } from 'react';
+import Button from './Button';
 
 const Navbar = () => {
   const { pathname } = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleLogout = () => {
-    console.log('logging out');
-    onClose();
-  }
 
   return (
     <Fragment>
@@ -53,25 +47,46 @@ const Navbar = () => {
         <Box>
           {pathname === '/timeline' ? null : <NavLink text="Timeline" href="/timeline" />}
           {pathname === '/about' ? null : <NavLink text="About" href="/about" />}
-          <ChakraLink px={2} color="white" as="button" onClick={onOpen}>
-            Logout
-        </ChakraLink>
+
+          <Popover usePortal>
+            {({ onClose }) => {
+              const handleLogout = () => {
+                console.log('logging out');
+                onClose();
+              }
+
+              return (
+                <Fragment>
+                  <PopoverTrigger>
+                    <ChakraLink px={2} color="white" as="button">
+                      Logout
+                    </ChakraLink>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    zIndex={4}
+                    bg="white"
+                    borderColor="green.700"
+                  >
+                    <PopoverArrow />
+                    <PopoverCloseButton />
+                    <PopoverHeader>Confirmation!</PopoverHeader>
+                    <PopoverBody>
+                      <Text>Are you sure you want to log out?</Text>
+
+                      <Box display="flex" my="10px" justifyContent="flex-end">
+                        <Button onClick={handleLogout}>Yes</Button>
+                        <Button onClick={onClose} background="red.600" _hover={{ bg: "red.700" }}>
+                          No
+                        </Button>
+                      </Box>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Fragment>
+              )
+            }}
+          </Popover>
         </Box>
       </Flex>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered blockScrollOnMount={false}>
-        <ModalOverlay />
-        <ModalContent bg="white">
-          <ModalHeader>Are you sure you want to Log out?</ModalHeader>
-          <ModalCloseButton />
-
-          <ModalFooter>
-            <Button variantColor="red" mr={3} onClick={onClose}>
-              No
-            </Button>
-            <Button bg="green.300" variantColor="green" onClick={handleLogout}>Yes</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </Fragment>
   );
 };

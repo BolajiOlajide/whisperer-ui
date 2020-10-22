@@ -1,9 +1,11 @@
 import { Fragment, useState } from 'react';
-import { Box, Textarea, Text, PseudoBox, Grid, useDisclosure } from '@chakra-ui/core';
+import { Box, Textarea, Text, PseudoBox, Grid, useDisclosure, Skeleton } from '@chakra-ui/core';
 import { Modal } from '@chakra-ui/core/dist/Modal';
 
 import Button from './Button';
 import Whisper from './Whisper';
+import Whispers from './Whispers';
+import LoadingWhispers from './LoadingWhispers';
 
 import { randomWhispers } from '../utils/random';
 
@@ -38,26 +40,7 @@ const Timeline = () => {
         </PseudoBox>
 
         <Grid templateColumns="repeat(4, 1fr)" gap={8}>
-          {randomWhispers.map((whisper) => (
-            <Box
-              border="1px solid"
-              borderColor="green.700"
-              padding="10px"
-              w="100%"
-              color="green.700"
-              as="button"
-              display="flex"
-              flexDir="column"
-              key={whisper.id}
-              borderRadius="4px"
-              alignItems="flex-start"
-              justifyContent="space-between"
-              onClick={() => handleWhisperClick(whisper)}
-            >
-              <Text fontSize="1.2em" color="black" textAlign="left">{whisper.text}</Text>
-              <Text fontSize="0.8em" color="black" alignSelf="flex-end">by {whisper.whisperer.username}</Text>
-            </Box>
-          ))}
+          <Whispers whispers={randomWhispers} handleWhisperClick={handleWhisperClick} />
         </Grid>
       </Box>
       <Modal isOpen={isOpen} onClose={closeModal} isCentered preserveScrollBarGap scrollBehavior="outside">

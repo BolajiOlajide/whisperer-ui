@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Box, Heading, Text } from '@chakra-ui/core';
 
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const About = () => {
   return (
@@ -22,6 +23,8 @@ const About = () => {
 
         <Text>Share a secret today. A good secret. </Text>
       </Box>
+
+      <Footer />
     </Fragment>
   );
 };
