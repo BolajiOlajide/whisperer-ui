@@ -15,25 +15,29 @@ import { WHISPER_TOKEN } from '../constants';
 
 const TimelinePage = () => {
   const router = useRouter();
-  const [authenticated, setAuthenticated] = useState(true);
-  const [title, setTitle] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
 
-  // useEffect(() => {
-  //   if (process.browser) {
-  //     const token = window.localStorage.getItem(WHISPER_TOKEN);
-  //     if (token) {
-  //       const decodedToken = jwtDecode(token);
-  //       console.log(decodedToken);
-  //     }
-  //     router.push('/');
-  //   }
-  // }, []);
+  // const handle
 
-  const pageTitle = title || 'Timeline | Whisperer'
+  useEffect(() => {
+    if (process.browser) {
+      try {
+        const token = window.localStorage.getItem(WHISPER_TOKEN);
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          console.log(decodedToken);
+        }
+      } catch {
+        console.error('Something bad happened!');
+        router.push('/');
+      }
+    }
+  }, []);
+
   return (
     <Fragment>
       <Head>
-        <title>{pageTitle}</title>
+        <title>Timeline | Whisperer</title>
       </Head>
       {
         authenticated ? (
