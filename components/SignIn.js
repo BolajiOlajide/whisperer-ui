@@ -16,19 +16,18 @@ import FormInput from './FormInput';
 import useInput from '../hooks/useInput';
 import { SIGN_IN_MUTATION } from '../graphql';
 import { WHISPER_TOKEN } from '../constants';
-import { route } from 'next/dist/next-server/server/router';
 
 
 const SignIn = ({ toggleSignIn, fade }) => {
   const toast = useToast();
   const router = useRouter();
-  const [userSignIn, { data, loading, error }] = useMutation(SIGN_IN_MUTATION);
+  const [userSignIn, { data, loading, client }] = useMutation(SIGN_IN_MUTATION);
   const goToSignUp = (event) => {
     event.preventDefault();
     toggleSignIn(prevValue => !prevValue);
   }
-  const { bind: bindEmail, value: email, reset: resetEmail } = useInput('');
-  const { bind: bindPassword, value: password, reset: resetPassword } = useInput('');
+  const { bind: bindEmail, value: email, reset: resetEmail } = useInput('bolaji@proton.com');
+  const { bind: bindPassword, value: password, reset: resetPassword } = useInput('bolaji');
 
   const displayError = (errorMessage) => toast({
     title: 'Sign in Error!',
@@ -47,12 +46,26 @@ const SignIn = ({ toggleSignIn, fade }) => {
       }
 
       const { data } = await userSignIn({ variables: { email, password } });
+      console.log(client);
+      client.link.request(operation => {
+        console.log(operation, '<=== operation')
+        operation.setContext({ Authorization: data.signin.token })
+      });
 
-      localStorage.setItem(WHISPER_TOKEN, data.signin.token);
-      router.push('/timeline');
+      // client.link.request(operation => {
+      //   console.log(operation);
+      //   operation.setContext({
+      //     headers: {
+      //       Authorization: data.signin.token
+      //     }
+      //   })
+      // });
       resetEmail();
       resetPassword();
+      // localStorage.setItem(WHISPER_TOKEN, data.signin.token);
+      // router.push('/timeline');
     } catch (error) {
+      console.log(error)
       displayError(error.message)
     }
   }
