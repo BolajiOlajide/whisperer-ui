@@ -17,12 +17,15 @@ import {
   PopoverCloseButton,
 } from '@chakra-ui/core/dist/Popover';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 import NavLink from './NavLink';
 import Button from './Button';
+import { WHISPER_TOKEN } from '../constants';
+
 
 const Navbar = () => {
-  const { pathname } = useRouter();
+  const router = useRouter();
 
   return (
     <Fragment>
@@ -45,14 +48,18 @@ const Navbar = () => {
           </ChakraLink>
         </Link>
         <Box>
-          {pathname === '/timeline' ? null : <NavLink text="Timeline" href="/timeline" />}
-          {pathname === '/about' ? null : <NavLink text="About" href="/about" />}
+          {router.pathname === '/timeline' ? null : <NavLink text="Timeline" href="/timeline" />}
+          {router.pathname === '/about' ? null : <NavLink text="About" href="/about" />}
 
           <Popover usePortal>
             {({ onClose }) => {
               const handleLogout = () => {
-                console.log('logging out');
                 onClose();
+
+                Cookies.remove(WHISPER_TOKEN);
+                console.log('logging out');
+
+                router.push('/');
               }
 
               return (

@@ -47,27 +47,13 @@ const SignIn = ({ toggleSignIn, fade }) => {
       }
 
       const { data } = await userSignIn({ variables: { email, password } });
-      console.log('client', data.signin.token);
       Cookies.set('X-TOKEN', data.signin.token)
-      // client.link.request(operation => {
-      //   console.log(operation, '<=== operation')
-      //   operation.setContext({ Authorization: data.signin.token })
-      // });
 
-      // client.link.request(operation => {
-      //   console.log(operation);
-      //   operation.setContext({
-      //     headers: {
-      //       Authorization: data.signin.token
-      //     }
-      //   })
-      // });
       resetEmail();
       resetPassword();
-      // localStorage.setItem(WHISPER_TOKEN, data.signin.token);
+
       router.push('/timeline');
     } catch (error) {
-      console.log(error)
       displayError(error.message)
     }
   }

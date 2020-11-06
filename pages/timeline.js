@@ -26,7 +26,7 @@ const TimelinePage = () => {
         if (token) {
           const { exp } = jwtDecode(token);
 
-          if ((Date.now() / 1000) > exp) {
+          if ((Date.now()) > exp) {
             return setAuthenticated(true);
           }
         }

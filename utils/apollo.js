@@ -1,7 +1,7 @@
 import withApollo from 'next-with-apollo';
 import { ApolloClient, InMemoryCache } from '@apollo/react-hooks';
 
-import { endpoint, WHISPER_TOKEN } from '../constants';
+import { endpoint } from '../constants';
 
 
 export default withApollo(({ initialState, headers, ctx }) => {

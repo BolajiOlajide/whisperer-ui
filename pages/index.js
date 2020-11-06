@@ -23,14 +23,15 @@ const Home = () => {
   const { loading, error } = useQuery(NOOB_QUERY);
 
   useEffect(() => {
-    if (process.browser && window.localStorage.getItem(WHISPER_TOKEN)) {
+
+    if (process.browser) {
       try {
         const token = Cookies.get(WHISPER_TOKEN);
 
         if (token) {
           const { exp } = jwtDecode(token);
 
-          if ((Date.now() / 1000) > exp) {
+          if (Date.now() > exp) {
             router.push('/timeline');
           } else {
             Cookies.remove(WHISPER_TOKEN);

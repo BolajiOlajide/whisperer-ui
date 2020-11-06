@@ -26,7 +26,7 @@ const Timeline = () => {
     setCurrentWhisper(null);
   }
 
-  console.log(whispers, error)
+  console.log(whispers, error);
 
   return (
     <Fragment>
