@@ -9,12 +9,10 @@ import Whispers from './Whispers';
 import LoadingWhispers from './LoadingWhispers';
 
 import { randomWhispers } from '../utils/random';
-import { FETCH_WHISPER_QUERY } from '../graphql';
 
 const Timeline = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentWhisper, setCurrentWhisper] = useState(null);
-  const { data: whispers, loading, error } = useQuery(FETCH_WHISPER_QUERY);
 
   const handleWhisperClick = (whisper) => {
     setCurrentWhisper(whisper);
@@ -25,8 +23,6 @@ const Timeline = () => {
     onClose();
     setCurrentWhisper(null);
   }
-
-  console.log(whispers, error);
 
   return (
     <Fragment>

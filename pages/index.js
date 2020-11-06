@@ -20,10 +20,9 @@ const Home = () => {
   const toast = useToast();
   const router = useRouter();
   const [showSignIn, toggleSignIn] = useState(true);
-  const { loading, error } = useQuery(NOOB_QUERY);
+  // const { loading, error } = useQuery(NOOB_QUERY);
 
   useEffect(() => {
-
     if (process.browser) {
       try {
         const token = Cookies.get(WHISPER_TOKEN);
@@ -37,9 +36,6 @@ const Home = () => {
             Cookies.remove(WHISPER_TOKEN);
           }
         }
-
-        // check to see if the token has expired
-
       } catch {
         // if for some reason the token decoding fails, we don't want to do anything
         console.warn('something weird is going on!');
@@ -48,21 +44,21 @@ const Home = () => {
     }
   }, [])
 
-  if (loading) {
-    return <Spinner />
-  }
+  // if (loading) {
+  //   return <Spinner />
+  // }
 
-  if (error) {
-    const errorMessage = `An error occurred:
-${error.message}`;
-    toast({
-      title: 'ERROR!',
-      description: errorMessage,
-      status: "error",
-      duration: 4000,
-      isClosable: true,
-    });
-  }
+//   if (error) {
+//     const errorMessage = `An error occurred:
+// ${error.message}`;
+//     toast({
+//       title: 'ERROR!',
+//       description: errorMessage,
+//       status: "error",
+//       duration: 4000,
+//       isClosable: true,
+//     });
+//   }
 
   return (
     <Fragment>

@@ -22,13 +22,15 @@ import { WHISPER_TOKEN } from '../constants';
 const SignIn = ({ toggleSignIn, fade }) => {
   const toast = useToast();
   const router = useRouter();
-  const [userSignIn, { data, loading, client }] = useMutation(SIGN_IN_MUTATION);
+  // const [userSignIn, { data, loading }] = useMutation(SIGN_IN_MUTATION);
+
   const goToSignUp = (event) => {
     event.preventDefault();
     toggleSignIn(prevValue => !prevValue);
   }
-  const { bind: bindEmail, value: email, reset: resetEmail } = useInput('bolaji@proton.com');
-  const { bind: bindPassword, value: password, reset: resetPassword } = useInput('bolaji');
+  const { bind: bindEmail, value: email, reset: resetEmail } = useInput('');
+  const { bind: bindPassword, value: password, reset: resetPassword } = useInput('');
+  const loading = false;
 
   const displayError = (errorMessage) => toast({
     title: 'Sign in Error!',
@@ -46,13 +48,15 @@ const SignIn = ({ toggleSignIn, fade }) => {
         return displayError('Email and password fields are required');
       }
 
-      const { data } = await userSignIn({ variables: { email, password } });
-      Cookies.set(WHISPER_TOKEN, data.signin.token)
+      console.log('signing in')
 
-      resetEmail();
-      resetPassword();
+      // const { data } = await userSignIn({ variables: { email, password } });
+      // Cookies.set(WHISPER_TOKEN, data.signin.token)
 
-      router.push('/timeline');
+      // resetEmail();
+      // resetPassword();
+
+      // router.push('/timeline');
     } catch (error) {
       displayError(error.message)
     }

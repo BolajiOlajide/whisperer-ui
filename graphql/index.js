@@ -42,15 +42,3 @@ query NOOB_QUERY {
   noob
 }
 `;
-
-export const FETCH_WHISPER_QUERY = gql`
-query FETCH_WHISPER_QUERY {
-  whispers {
-    id
-    text
-    whisperer {
-      username
-    }
-  }
-}
-`;
