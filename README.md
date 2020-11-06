@@ -3,6 +3,7 @@
 This repository for the UI that powers the Whisperer platform imagined by Proton. A way to share secrets loooool.
 
 No secret is safe sha. Remember that.
+[Slides](https://docs.google.com/presentation/d/10KyPvt9VNHVYmPmJiJe20EkV0h48tDf8vC300pesjaA/edit?usp=sharing)
 
 ## Tech Stack
 
