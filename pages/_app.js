@@ -14,14 +14,14 @@ const App = ({ Component, pageProps, apollo }) => (
       <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
       <title>Whisperer</title>
     </Head>
-    {/* <ApolloProvider client={apollo}> */}
+    <ApolloProvider client={apollo}>
       <ThemeProvider theme={theme}>
         <CSSReset />
         <ColorModeProvider>
           <Component {...pageProps} />
         </ColorModeProvider>
       </ThemeProvider>
-    {/* </ApolloProvider> */}
+    </ApolloProvider>
   </Fragment>
 );
 
@@ -39,5 +39,5 @@ App.getInitialProps = async ({ Component, ctx }) => {
   return { pageProps };
 };
 
-// export default withApollo(App);
-export default App;
+export default withApollo(App);
+// export default App;

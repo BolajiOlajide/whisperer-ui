@@ -22,7 +22,7 @@ import { WHISPER_TOKEN } from '../constants';
 const SignIn = ({ toggleSignIn, fade }) => {
   const toast = useToast();
   const router = useRouter();
-  // const [userSignIn, { data, loading }] = useMutation(SIGN_IN_MUTATION);
+  const [userSignIn, { data, loading }] = useMutation(SIGN_IN_MUTATION);
 
   const goToSignUp = (event) => {
     event.preventDefault();
@@ -30,7 +30,6 @@ const SignIn = ({ toggleSignIn, fade }) => {
   }
   const { bind: bindEmail, value: email, reset: resetEmail } = useInput('');
   const { bind: bindPassword, value: password, reset: resetPassword } = useInput('');
-  const loading = false;
 
   const displayError = (errorMessage) => toast({
     title: 'Sign in Error!',
@@ -50,11 +49,12 @@ const SignIn = ({ toggleSignIn, fade }) => {
 
       console.log('signing in')
 
-      // const { data } = await userSignIn({ variables: { email, password } });
-      // Cookies.set(WHISPER_TOKEN, data.signin.token)
+      const { data } = await userSignIn({ variables: { email, password } });
+      console.log(data, '<====');
+      Cookies.set(WHISPER_TOKEN, data.signin.token)
 
-      // resetEmail();
-      // resetPassword();
+      resetEmail();
+      resetPassword();
 
       // router.push('/timeline');
     } catch (error) {

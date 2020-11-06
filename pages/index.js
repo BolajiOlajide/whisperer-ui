@@ -20,7 +20,7 @@ const Home = () => {
   const toast = useToast();
   const router = useRouter();
   const [showSignIn, toggleSignIn] = useState(true);
-  // const { loading, error } = useQuery(NOOB_QUERY);
+  const { loading, error, data } = useQuery(NOOB_QUERY);
 
   useEffect(() => {
     if (process.browser) {
@@ -44,21 +44,23 @@ const Home = () => {
     }
   }, [])
 
-  // if (loading) {
-  //   return <Spinner />
-  // }
+  console.log({ loading, error, data })
 
-//   if (error) {
-//     const errorMessage = `An error occurred:
-// ${error.message}`;
-//     toast({
-//       title: 'ERROR!',
-//       description: errorMessage,
-//       status: "error",
-//       duration: 4000,
-//       isClosable: true,
-//     });
-//   }
+  if (loading) {
+    return <Spinner />
+  }
+
+  if (error) {
+    const errorMessage = `An error occurred:
+${error.message}`;
+    toast({
+      title: 'ERROR!',
+      description: errorMessage,
+      status: "error",
+      duration: 4000,
+      isClosable: true,
+    });
+  }
 
   return (
     <Fragment>

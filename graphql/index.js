@@ -33,6 +33,10 @@ mutation SIGN_IN_MUTATION(
     }
   ) {
     token
+    user {
+      username
+      id
+    }
   }
 }
 `;
