@@ -7,6 +7,7 @@ import {
 import useToast from '@chakra-ui/core/dist/Toast';
 import { useMutation } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 import Button from './Button';
 import ButtonLink from './ButtonLink';
@@ -46,11 +47,12 @@ const SignIn = ({ toggleSignIn, fade }) => {
       }
 
       const { data } = await userSignIn({ variables: { email, password } });
-      console.log(client);
-      client.link.request(operation => {
-        console.log(operation, '<=== operation')
-        operation.setContext({ Authorization: data.signin.token })
-      });
+      console.log('client', data.signin.token);
+      Cookies.set('X-TOKEN', data.signin.token)
+      // client.link.request(operation => {
+      //   console.log(operation, '<=== operation')
+      //   operation.setContext({ Authorization: data.signin.token })
+      // });
 
       // client.link.request(operation => {
       //   console.log(operation);
@@ -63,7 +65,7 @@ const SignIn = ({ toggleSignIn, fade }) => {
       resetEmail();
       resetPassword();
       // localStorage.setItem(WHISPER_TOKEN, data.signin.token);
-      // router.push('/timeline');
+      router.push('/timeline');
     } catch (error) {
       console.log(error)
       displayError(error.message)

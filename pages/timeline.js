@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import jwtDecode from 'jwt-decode';
 import { Box } from '@chakra-ui/core';
+import Cookies from 'js-cookie';
 
 
 import Timeline from '../components/Timeline';
@@ -20,7 +21,8 @@ const TimelinePage = () => {
   useEffect(() => {
     if (process.browser) {
       try {
-        const token = window.localStorage.getItem(WHISPER_TOKEN);
+        const token = Cookies.get(WHISPER_TOKEN);
+
         if (token) {
           const { exp } = jwtDecode(token);
 
@@ -29,11 +31,11 @@ const TimelinePage = () => {
           }
         }
 
-        localStorage.removeItem(WHISPER_TOKEN);
+        Cookies.remove(WHISPER_TOKEN);
         router.push('/');
       } catch {
         console.error('Something bad happened!');
-        localStorage.removeItem(WHISPER_TOKEN);
+        Cookies.remove(WHISPER_TOKEN);
         router.push('/');
       }
     }

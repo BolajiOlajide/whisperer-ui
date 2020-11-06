@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 import Overlay from '../components/Overlay';
 import SignIn from '../components/SignIn';
@@ -24,18 +25,24 @@ const Home = () => {
   useEffect(() => {
     if (process.browser && window.localStorage.getItem(WHISPER_TOKEN)) {
       try {
-        const token = window.localStorage.getItem(WHISPER_TOKEN);
-        const { exp } = jwtDecode(token);
+        const token = Cookies.get(WHISPER_TOKEN);
+
+        if (token) {
+          const { exp } = jwtDecode(token);
+
+          if ((Date.now() / 1000) > exp) {
+            router.push('/timeline');
+          } else {
+            Cookies.remove(WHISPER_TOKEN);
+          }
+        }
 
         // check to see if the token has expired
-        if ((Date.now() / 1000) > exp) {
-          router.push('/timeline');
-        } else {
-          localStorage.removeItem(WHISPER_TOKEN);
-        }
+
       } catch {
         // if for some reason the token decoding fails, we don't want to do anything
         console.warn('something weird is going on!');
+        Cookies.remove(WHISPER_TOKEN);
       }
     }
   }, [])
