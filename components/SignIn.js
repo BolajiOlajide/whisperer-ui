@@ -47,7 +47,7 @@ const SignIn = ({ toggleSignIn, fade }) => {
       }
 
       const { data } = await userSignIn({ variables: { email, password } });
-      Cookies.set('X-TOKEN', data.signin.token)
+      Cookies.set(WHISPER_TOKEN, data.signin.token)
 
       resetEmail();
       resetPassword();
