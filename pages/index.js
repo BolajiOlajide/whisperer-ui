@@ -28,7 +28,7 @@ const Home = () => {
         const { exp } = jwtDecode(token);
 
         // check to see if the token has expired
-        if (Date.now() > exp) {
+        if ((Date.now() / 1000) > exp) {
           router.push('/timeline');
         } else {
           localStorage.removeItem(WHISPER_TOKEN);
